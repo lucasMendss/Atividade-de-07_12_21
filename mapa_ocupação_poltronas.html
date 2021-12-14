@@ -1,0 +1,56 @@
+<html>
+<head>
+<title>Mapa de ocupação</title>
+<script language="Javascript">
+  var lugar, fileira, poltrona;
+  lugar = new Array(15);
+  for(fileira=0; fileira<lugar.length; fileira++)
+  {
+      lugar[fileira] = new Array(40);
+  }
+  for(fileira=0; fileira<15; fileira++)
+  {
+      for(poltrona=0; poltrona<40; poltrona++)
+      lugar[fileira][poltrona] = false;
+  }
+
+  function reservar(qualf, qualp)  
+  {
+      if (lugar[qualf][qualp])
+      {
+          alert("Este lugar já está ocupado");
+      }
+      else
+      {
+          lugar[qualf][qualp] = true;
+          document.getElementById("b" + qualf + qualp).setAttribute("src","lugarocupado.png");
+          //alert("Reserva efetuada com sucesso");
+      }
+  }
+</script>
+</head>
+
+<body>
+    <table border='1'>
+    <form name="frm">
+        <script language="Javascript">
+        var fileira, poltrona;
+        for(fileira = 0; fileira<15; fileira++)
+        {   
+            document.write("<tr>");
+            for(poltrona = 0; poltrona<40; poltrona++)
+            {
+                document.write("<td align='center'>");
+                document.write("<img id='b" + fileira + poltrona + "' width='20' height='20' src='lugarlivre.png' onclick='reservar(" + fileira + poltrona + ");'><br>");
+                document.write("</td>");
+            }
+            document.write("</tr>");
+            /*document.write("<tr><td align='center'>");
+            document.write("<input type='button' id='b" + fileira + poltrona + "' value='Livre' onclick='reservar(" + fileira + poltrona + ");'>");
+            document.write("</td></tr>");*/
+        }
+    </script>
+    </form>
+    </table>
+</body>
+</html>
